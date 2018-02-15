@@ -83,8 +83,7 @@ Namespace Microsoft.CodeAnalysis.VisualBasic
                                 ' Declarations by themselves are not executable. Only report one as unreachable if it has an initializer.
                                 Dim decl = TryCast(statement, BoundLocalDeclaration)
                                 If decl.InitializerOpt IsNot Nothing Then
-                                    ' TODO: uncomment the following line 
-                                    'Me.diagnostics.Add(ERRID.WRN_UnreachableCode, decl.InitializerOpt.Syntax.GetLocation())
+                                    Me.diagnostics.Add(ERRID.WRN_UnreachableCode, decl.InitializerOpt.Syntax.GetLocation())
                                     Me.State.Reported = True
                                 End If
 
@@ -94,8 +93,7 @@ Namespace Microsoft.CodeAnalysis.VisualBasic
                                 ' always reachable because all returns jump to the final synthetic return.
                                 Dim returnStmt = TryCast(statement, BoundReturnStatement)
                                 If Not returnStmt.IsEndOfMethodReturn Then
-                                    ' TODO: uncomment the following line 
-                                    'Me.diagnostics.Add(ERRID.WRN_UnreachableCode, statement.Syntax.GetLocation())
+                                    Me.diagnostics.Add(ERRID.WRN_UnreachableCode, statement.Syntax.GetLocation())
                                     Me.State.Reported = True
                                 End If
 
@@ -104,8 +102,7 @@ Namespace Microsoft.CodeAnalysis.VisualBasic
                                 ' declarations inside this Dim statement are processed
 
                             Case Else
-                                ' TODO: uncomment the following line 
-                                'Me.diagnostics.Add(ERRID.WRN_UnreachableCode, statement.Syntax.GetLocation())
+                                Me.diagnostics.Add(ERRID.WRN_UnreachableCode, statement.Syntax.GetLocation())
                                 Me.State.Reported = True
                         End Select
 
